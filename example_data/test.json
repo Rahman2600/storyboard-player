@@ -1,5 +1,48 @@
 {
-    "strings": [
-        "abc", "def"
-    ]
+    "id": "581aad5c-275a-4b87-a1a3-ce3d9c8abbda",
+    "type": "default",
+    "selected": false,
+    "x": 117.0158153136764,
+    "y": 448.7062154688318,
+    "extras": {},
+    "ports": [
+        {
+            "id": "9c93b02b-37d0-4702-a6e1-1763ccb79e9d",
+            "type": "default",
+            "selected": false,
+            "name": "60a315f7-bbb7-4331-a8c4-6edc533d9649",
+            "parentNode": "581aad5c-275a-4b87-a1a3-ce3d9c8abbda",
+            "links": [
+                "b9ad84d6-8e2a-4f41-8b7c-a49f87674393"
+            ],
+            "in": true,
+            "label": "In"
+        },
+        {
+            "id": "e19a2e01-1baa-4cfa-a748-a6a0b1f7e210",
+            "type": "default",
+            "selected": false,
+            "name": "779b9d4d-8b3e-4748-ae75-ef45538cc1fb",
+            "parentNode": "581aad5c-275a-4b87-a1a3-ce3d9c8abbda",
+            "links": [
+                "64bfe63c-a7b8-429e-b78b-26b800bef237"
+            ],
+            "in": false,
+            "label": "Take CPSC 312"
+        },
+        {
+            "id": "b9dc505d-293e-4cd2-967f-16f792690056",
+            "type": "default",
+            "selected": false,
+            "name": "d429662a-8c64-45ac-b559-e088f454be8e",
+            "parentNode": "581aad5c-275a-4b87-a1a3-ce3d9c8abbda",
+            "links": [
+                "88cb0c81-586b-442b-8c62-bb21f73f9da7"
+            ],
+            "in": false,
+            "label": "Drop the course and take physics"
+        }
+    ],
+    "name": "Welcome back",
+    "color": "#00bfff"
 }

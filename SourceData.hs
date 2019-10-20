@@ -33,6 +33,8 @@ module SourceData where
                 ,   scene_name          :: String
         } deriving (Show)
 
+    -- data MetaEntry =
+    --     -- Additional scene information, such as text
 
     -- object translation from JSON. keys refer to the original keys in 
     -- the file.
@@ -58,15 +60,6 @@ module SourceData where
 
     -- Decode test code
 
-    data Test =
-        Test {
-            strings :: [String]
-        } deriving (Show)
-
-    instance FromJSON Test where
-        parseJSON = withObject "test obj" $ \o ->
-            Test    <$> o .: "strings"
-
     testJSON :: FilePath
     testJSON = "example_data/test.json"
 
@@ -76,11 +69,11 @@ module SourceData where
     test :: IO ()
     test = do
         putStrLn "%================ Storyboard Parse Demo =================%"
-        putStrLn "(This should parse a single object from file)"
+        putStrLn "(This should parse a single scene from file)"
         putStrLn "Decoding JSON from file..."
         content <- getJSON
         C.putStrLn content
-        d <- (eitherDecode <$> getJSON) :: IO (Either String [Test])
+        d <- (eitherDecode <$> getJSON) :: IO (Either String StoryScene)
         Prelude.putStrLn "Result:"
         case d of
             Left err -> putStrLn err
