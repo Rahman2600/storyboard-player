@@ -1,0 +1,180 @@
+Story {
+    story_slug = "cpsc-312", 
+    story_scenes = StoryInfo {
+        items = [
+            StoryScene {
+                scene_id = "94913fcb-4d8e-4314-b99e-e24646d5e551", 
+                scene_type = "default", 
+                scene_ports = [
+                    StoryPort {
+                        port_id = "a0786b8b-8508-4328-b367-3c3a28976a0d", 
+                        port_type = "default", 
+                        port_name = "46e10351-0ca5-445c-b41b-5726d7abcd50", 
+                        parentNode = "94913fcb-4d8e-4314-b99e-e24646d5e551", 
+                        links = ["b0bcbc51-9046-45e6-b38a-80b62f07120b"], 
+                        port_in = False, 
+                        label = "Take CPSC 312"
+                    },
+                    StoryPort {
+                        port_id = "5681e7ad-2b1f-4629-9ff4-0a4092e75a89", 
+                        port_type = "default", 
+                        port_name = "75ee643b-e9f4-4f71-96bc-daa9e62b05db", 
+                        parentNode = "94913fcb-4d8e-4314-b99e-e24646d5e551", 
+                        links = ["5d5a6262-5da2-4514-aeae-4efd3cf13ad5"], 
+                        port_in = False, 
+                        label = "Drop the course and take physics"
+                    }
+                ], 
+                scene_name = "Welcome back"
+            },
+            StoryScene {
+                scene_id = "38388378-6f4c-4631-884a-f63ff3ac8fb1", 
+                scene_type = "default", 
+                scene_ports = [
+                    StoryPort {
+                        port_id = "434b32bc-170d-41d2-9d31-9700be9033f9", 
+                        port_type = "default", 
+                        port_name = "01247fcc-ed87-488b-9edd-13b9279856a0", 
+                        parentNode = "38388378-6f4c-4631-884a-f63ff3ac8fb1", 
+                        links = [
+                            "b0bcbc51-9046-45e6-b38a-80b62f07120b",
+                            "64bfe63c-a7b8-429e-b78b-26b800bef237"
+                        ], 
+                        port_in = True, 
+                        label = "Input"
+                    },
+                    StoryPort {
+                        port_id = "e9790ecf-dbb1-4546-a1f9-a060da48e86e", 
+                        port_type = "default", 
+                        port_name = "b35ed186-524e-4641-b415-b29f95dac10d", 
+                        parentNode = "38388378-6f4c-4631-884a-f63ff3ac8fb1", 
+                        links = ["063e3d36-b2a7-44ea-9311-4ccbf9c65162"], 
+                        port_in = False, 
+                        label = "A choose-your-own-adventure game"
+                    },
+                    StoryPort {
+                        port_id = "7afcc43a-cc44-45f1-8fbc-82432a3bdb93", 
+                        port_type = "default", 
+                        port_name = "312bb9fb-c7ef-419d-9ea8-4427252699c0", 
+                        parentNode = "38388378-6f4c-4631-884a-f63ff3ac8fb1", 
+                        links = ["8b59437a-2226-46b8-9cbf-635aeef92ee5"], 
+                        port_in = False, 
+                        label = "A supervised machine-learning model analysis"
+                    }
+                ], 
+                scene_name = "You stuck with it"
+            },
+            StoryScene {
+                scene_id = "9e59af2a-a4dd-4e2d-ac68-14f344ecb4db", 
+                scene_type = "default", 
+                scene_ports = [
+                    StoryPort {
+                        port_id = "0ae3490a-2034-487d-81ce-a42c5011e772", 
+                        port_type = "default", 
+                        port_name = "d003fe27-f7c6-4100-b128-d703a7f4f1b1", 
+                        parentNode = "9e59af2a-a4dd-4e2d-ac68-14f344ecb4db", 
+                        links = [
+                            "5d5a6262-5da2-4514-aeae-4efd3cf13ad5",
+                            "88cb0c81-586b-442b-8c62-bb21f73f9da7"
+                        ], 
+                        port_in = True, 
+                        label = "Input"
+                    },
+                    StoryPort {
+                        port_id = "56c6b808-2027-4cac-a276-2b2d56aa2fbb", 
+                        port_type = "default", 
+                        port_name = "c8cd6b47-2327-4681-9267-011887f92240", 
+                        parentNode = "9e59af2a-a4dd-4e2d-ac68-14f344ecb4db", 
+                        links = ["b9ad84d6-8e2a-4f41-8b7c-a49f87674393"], 
+                        port_in = False, label = "Ok maybe"}
+                ], 
+                scene_name = "Phew"
+            },
+            StoryScene {
+                scene_id = "bc945ff4-2cc6-405d-9557-26c19977ec8e", 
+                scene_type = "default", 
+                scene_ports = [
+                    StoryPort {
+                        port_id = "321cea39-a10e-49fc-9254-56f183869257", 
+                        port_type = "default", 
+                        port_name = "42fe4d81-128e-4b4a-9cb8-660d943475fa", 
+                        parentNode = "bc945ff4-2cc6-405d-9557-26c19977ec8e", 
+                        links = [
+                            "063e3d36-b2a7-44ea-9311-4ccbf9c65162",
+                            "8b59437a-2226-46b8-9cbf-635aeef92ee5"
+                        ], 
+                        port_in = True, 
+                        label = "In"
+                    }
+                ], 
+                scene_name = "You passed!"
+            },
+            StoryScene {
+                scene_id = "581aad5c-275a-4b87-a1a3-ce3d9c8abbda", 
+                scene_type = "default", 
+                scene_ports = [
+                    StoryPort {
+                        port_id = "9c93b02b-37d0-4702-a6e1-1763ccb79e9d", 
+                        port_type = "default", 
+                        port_name = "60a315f7-bbb7-4331-a8c4-6edc533d9649", 
+                        parentNode = "581aad5c-275a-4b87-a1a3-ce3d9c8abbda", 
+                        links = ["b9ad84d6-8e2a-4f41-8b7c-a49f87674393"], 
+                        port_in = True, 
+                        label = "In"
+                    },
+                    StoryPort {
+                        port_id = "e19a2e01-1baa-4cfa-a748-a6a0b1f7e210", 
+                        port_type = "default", 
+                        port_name = "779b9d4d-8b3e-4748-ae75-ef45538cc1fb", 
+                        parentNode = "581aad5c-275a-4b87-a1a3-ce3d9c8abbda", 
+                        links = ["64bfe63c-a7b8-429e-b78b-26b800bef237"], 
+                        port_in = False, 
+                        label = "Take CPSC 312"
+                    },
+                    StoryPort {
+                        port_id = "b9dc505d-293e-4cd2-967f-16f792690056", 
+                        port_type = "default", 
+                        port_name = "d429662a-8c64-45ac-b559-e088f454be8e", 
+                        parentNode = "581aad5c-275a-4b87-a1a3-ce3d9c8abbda", 
+                        links = ["88cb0c81-586b-442b-8c62-bb21f73f9da7"], 
+                        port_in = False, 
+                        label = "Drop the course and take physics"
+                    }
+                ], 
+                scene_name = "Welcome back"
+            }
+        ]
+    }, 
+    scene_meta = [
+        SceneMeta {
+            link_id = "38388378-6f4c-4631-884a-f63ff3ac8fb1", 
+            text = "<p>This course provides an introduction to logic programming and to functional 
+                    programming. This is a programming course designed to get you to think 
+                    declaratively and non-procedurally. If you think that changing the value 
+                    of a variable is a weird thing to do both from a human's perspective 
+                    (just what does a variable's value mean if it keeps changing?) and from a 
+                    computer's perspective (if the value was used for something else, does 
+                    that value also have to change? If something is already computed can't the 
+                    old value just be retrieved? We can optimize code better if we know what 
+                    it means. \"Undo\" becomes trivial.) then this course is for you.
+                    </p><p></p><p>What kind of project will you do?</p>"
+        },
+        SceneMeta {
+            link_id = "9e59af2a-a4dd-4e2d-ac68-14f344ecb4db", 
+            text = "<p>Dodged a bullet there! Dr. Poole encourages you to take the course next term.</p>"
+        },
+        SceneMeta {
+            link_id = "94913fcb-4d8e-4314-b99e-e24646d5e551", 
+            text = "<p>School just started, but it's already the add-drop deadline.</p>"
+        },
+        SceneMeta {
+            link_id = "bc945ff4-2cc6-405d-9557-26c19977ec8e", 
+            text = "<p>David Poole reluctantly hands you your Haskell diploma and congratulates 
+                    you one a job well done.</p>"
+        },
+        SceneMeta {
+            link_id = "581aad5c-275a-4b87-a1a3-ce3d9c8abbda", 
+            text = "<p>School just started, but it's already the add-drop deadline.</p>"
+        }
+    ]
+}

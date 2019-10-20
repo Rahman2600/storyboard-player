@@ -42,9 +42,21 @@ module SourceData where
                 ,       text                :: String
         } deriving (Show)
 
+    data StoryScenes =
+        -- Contains story scenes
+        StoryInfo {     items               :: [StoryScene]
+        } deriving (Show)
+
+    data Story =
+        -- Top-level story abstraction
+        Story {     story_slug              :: String
+                ,   story_scenes            :: StoryScenes
+                ,   scene_meta              :: [SceneMeta]
+        } deriving (Show)
+
+
     -- object translation from JSON. keys refer to the original keys in 
     -- the file.
-    -- TODO figure out why the arrays give errors
 
     instance FromJSON StoryPort where
         parseJSON = withObject "story port" $ \o ->
@@ -71,6 +83,19 @@ module SourceData where
         parseJSON x =
             parseJSON x >>= mapM decodeMetaEntry . toList
 
+    -- Selective decoding of the source file. We only use the slug, nodes,
+    -- and meta fields
+
+    instance FromJSON StoryScenes where
+        parseJSON = withObject "story" $ \o ->
+            StoryInfo   <$> o .: "nodes"
+
+    instance FromJSON Story where
+        parseJSON = withObject "source" $ \o ->
+            Story       <$> o .: "slug"
+                        <*> o .: "story"
+                        <*> o .: "meta"
+
 
     -- Decode test code
 
@@ -86,10 +111,16 @@ module SourceData where
     getJSONMeta :: IO B.ByteString
     getJSONMeta = B.readFile testJSONMeta
 
+    testJSONGame :: FilePath
+    testJSONGame = "example_data/cpsc-312.json"
+
+    getJSONGame :: IO B.ByteString
+    getJSONGame = B.readFile testJSONGame
+
     test :: IO ()
     test = do
         putStrLn "%================ Storyboard Parse Test =================%"
-        putStrLn "(This should parse a single scene from file)"
+        putStrLn "1. (This should parse a single scene from file)"
         putStrLn "Decoding JSON from file..."
         content <- getJSON
         C.putStrLn content
@@ -99,11 +130,19 @@ module SourceData where
             Left err -> putStrLn err
             Right ps -> print ps
         putStrLn "%--------------------------------------------------------%"
-        putStrLn "(This should parse a list of scene metas from file)"
+        putStrLn "2. (This should parse a list of scene metas from file)"
         putStrLn "Decoding..."
         content <- getJSONMeta
         C.putStrLn content
         d <- (eitherDecode <$> getJSONMeta) :: IO (Either String [SceneMeta])
+        Prelude.putStrLn "Result:"
+        case d of
+            Left err -> putStrLn err
+            Right ps -> print ps
+        putStrLn "%--------------------------------------------------------%"
+        putStrLn "3. (This should parse full game info from file)"
+        putStrLn "Decoding..."
+        d <- (eitherDecode <$> getJSONGame) :: IO (Either String Story)
         Prelude.putStrLn "Result:"
         case d of
             Left err -> putStrLn err
