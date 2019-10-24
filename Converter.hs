@@ -17,19 +17,16 @@ storyToNode (Story _ (StoryInfo storyScenes) scene_meta) entryPoint  =
 
 getStory:: String -> [SceneMeta] -> String
 getStory scene_id (h:t)  
-    | (link_id h) == scene_id = (text h)
+    | (link_id h) == scene_id = (substring 3 ((length (text h)) - 4) (text h))
     | otherwise = (getStory scene_id t)
-
--- getLinkedScenes:: [String]->[StoryScene] -> [StoryScene]
--- getLinkedScenes [] _ = []
--- getLinkedScenes _ [] = []
--- getLinkedScenes (h:t) (h1:t1) =
---     (map (getLinkedScene (h1:t1)) (h:t))
  
 getLinkedScene:: [StoryScene] -> String -> String -> StoryScene
 getLinkedScene (h:t) link sceneid
     | (sceneid /= (scene_id h)) &&  (link `elem` (links (head (scene_ports h)))) = h
     | otherwise = (getLinkedScene t link sceneid)
+
+substring :: Int -> Int -> String -> String
+substring start end text = take (end - start) (drop start text)
  
 extractStoryNode :: String -> IO (Maybe Node)
 extractStoryNode fp =
@@ -41,4 +38,6 @@ extractStoryNode fp =
                     putStrLn err
                     return Nothing
             Right story ->
-                return (Just (storyToNode story))
+                return (Just (storyToNode story (head (items (story_scenes (story))))))
+
+
