@@ -3,7 +3,7 @@ module Converter where
 import SourceData
 import Play
 
-
+-- Converts a story to node starting from the entryPoint which is where all the other nodes originate from
 -- Story EntryPoint -> Node
 storyToNode:: Story -> StoryScene -> Node
 storyToNode (Story _ (StoryInfo []) scene_meta) _ = MtNode 
@@ -17,9 +17,13 @@ storyToNode (Story _ (StoryInfo storyScenes) scene_meta) entryPoint  =
 
 getStory:: String -> [SceneMeta] -> String
 getStory scene_id (h:t)  
-    | (link_id h) == scene_id = (substring 3 ((length (text h)) - 4) (text h))
+    | (link_id h) == scene_id = (removeHtml (text h))
     | otherwise = (getStory scene_id t)
  
+-- removes the outermost part of the html
+removeHtml:: String -> String
+removeHtml story =  (substring 3 ((length story) - 4) story)
+
 getLinkedScene:: [StoryScene] -> String -> String -> StoryScene
 getLinkedScene (h:t) link sceneid
     | (sceneid /= (scene_id h)) &&  (link `elem` (links (head (scene_ports h)))) = h
