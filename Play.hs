@@ -44,3 +44,4 @@ getNext' [] _ _ = MtNode
 getNext' ((Edge option node) : r) choice n
     | n == choice = node
     | otherwise = getNext' r choice (n + 1)
+
