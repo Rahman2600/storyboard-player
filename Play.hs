@@ -15,12 +15,15 @@ exampleStory = Node "Street corner" "You arrive at a street corner and are force
 play :: Node -> IO Node
 play (Node title desc options) =
     do
-        putStrLn ("Title: "++title)
-        putStrLn ("Description: "++desc)
+        putStrLn "---------------------"
+        putStrLn title
+        putStrLn "---------------------"
+        putStrLn desc
+        putStrLn "---------------------"
         if(options /= [])
          then do
             putStr (printOptions options)
-            putStr "Select an option: "
+            putStrLn "Select an option: "
             ans <- getLine
             let ans2 = read ans
             let nextNode = getNext ans2 options

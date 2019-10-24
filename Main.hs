@@ -1,7 +1,9 @@
-import qualified Converter
-import qualified Play as Player
+import qualified Converter -- JSON to Story Node Converter
+import qualified Play as Player -- Allows us to play a Story
 
 parseAndPlay :: String -> IO ()
+-- Consume a file path, extract the story structure, and play
+-- the game if parsed successfully
 parseAndPlay s =
     do
         n <- Converter.extractStoryNode s
@@ -11,8 +13,10 @@ parseAndPlay s =
                 do
                     putStrLn "Playing story!"
                     played <- Player.play node
-                    print played
+                    putStrLn "Thanks for playing!"
 
+-- main procedure
+-- ask user for a filepath and attempt to load and play the file
 main = 
     do
         putStrLn "-------------% STORYBOARD PLAYER %-------------"

@@ -2,6 +2,9 @@
 
 module SourceData where
 
+    -- Contains functions for extracting intermediate data-structures
+    -- from JSON story data.
+
     import Data.Aeson
     import Data.Aeson.Types
     import System.IO
@@ -76,6 +79,7 @@ module SourceData where
                         <*> o .: "name"
 
     decodeMetaEntry :: (String, Value) -> Parser SceneMeta
+    -- Decodes the "meta" component of the file
     decodeMetaEntry (key, val) = withObject "meta info" (\ o ->
             SceneMeta key <$> o .: "text") val
 
@@ -148,7 +152,11 @@ module SourceData where
             Left err -> putStrLn err
             Right ps -> print ps
 
-    
+    -- API
+
     parseStory :: FilePath -> IO (Either String Story)
+    -- parse story consumes a path to a JSON file and outputs
+    -- the result of parsing, which will be either an error string
+    -- or Story object
     parseStory fp = let getJSON = B.readFile fp in
         (eitherDecode <$> getJSON)

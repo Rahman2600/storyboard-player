@@ -1,5 +1,7 @@
 module Converter where
 
+-- JSON structure to Story Conversion
+
 import SourceData
 import Play
 
@@ -32,7 +34,14 @@ getLinkedScene (h:t) link sceneid
 substring :: Int -> Int -> String -> String
 substring start end text = take (end - start) (drop start text)
  
+
+-- API
+
 extractStoryNode :: String -> IO (Maybe Node)
+-- Consume a file path and attempt to convert to a Node
+-- after parsing the file.
+-- will produce Nothing if loading, parsing, or converting
+-- fails
 extractStoryNode fp =
     do
         parse <- SourceData.parseStory fp
@@ -43,5 +52,3 @@ extractStoryNode fp =
                     return Nothing
             Right story ->
                 return (Just (storyToNode story (head (items (story_scenes (story))))))
-
-
