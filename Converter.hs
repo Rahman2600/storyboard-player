@@ -1,10 +1,8 @@
-import SourceData 
+module Converter where
 
--- Node Title Story Options
-data Node = Node String String [Edge] | MtNode deriving (Show, Eq) 
+import SourceData
+import Play
 
--- Edge Option EndNode
-data Edge = Edge String Node deriving (Show, Eq)
 
 storyToNode:: Story -> Node
 storyToNode (Story _ (StoryInfo []) scene_meta) = MtNode 
@@ -14,9 +12,6 @@ storyToNode (Story _ (StoryInfo (h:t)) scene_meta) =
             (Edge (label sp) (storyToNode (Story "" (StoryInfo (getLinkedScenes (links sp) t)) 
         scene_meta)))) 
         (filter (\sp-> (not (port_in sp))) (scene_ports h))))
-
--- else (map (\ss -> (Edge (label (head (scene_ports ss))) (storyToNode (Story "" (StoryInfo [ss]) scene_meta)))) 
--- (getLinkedScenes (links (head (scene_ports h))) t)
 
 getStory:: String -> [SceneMeta] -> String
 getStory scene_id (h:t)  
@@ -34,14 +29,14 @@ getLinkedScene (h:t) link
     | (link `elem` (links (head (scene_ports h)))) = h
     | otherwise = (getLinkedScene t link)
  
-display :: Either String Story -> IO()
-display s =
-    case s of
-        Left err -> putStrLn err
-        Right story -> print (storyToNode story)
-
-
-
-main = parseStory "example_data/cpsc-312-acyclic.json" display
--- (getLinkedScenes ["b0bcbc51-9046-45e6-b38a-80b62f07120b"] (items (story_scenes story)))
--- (getStory "38388378-6f4c-4631-884a-f63ff3ac8fb1" (scene_meta story))
+extractStoryNode :: String -> IO (Maybe Node)
+extractStoryNode fp =
+    do
+        parse <- SourceData.parseStory fp
+        case parse of
+            Left err -> 
+                do
+                    putStrLn err
+                    return Nothing
+            Right story ->
+                return (Just (storyToNode story))

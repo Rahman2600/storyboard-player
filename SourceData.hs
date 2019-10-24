@@ -149,12 +149,6 @@ module SourceData where
             Right ps -> print ps
 
     
-    -- API
-
-    -- parseStory takes in a path to a JSON file, parses the story from it
-    -- and executes func with the story as a parameter
-    parseStory :: FilePath -> (Either String Story -> IO() ) -> IO ()
-    parseStory fp func = let getJSON = B.readFile fp in
-        do
-            d <- (eitherDecode <$> getJSON) :: IO (Either String Story)
-            func d
+    parseStory :: FilePath -> IO (Either String Story)
+    parseStory fp = let getJSON = B.readFile fp in
+        (eitherDecode <$> getJSON)
