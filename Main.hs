@@ -6,10 +6,17 @@ parseAndPlay s =
     do
         n <- Converter.extractStoryNode s
         case n of
-            Nothing -> putStr "Error in parse - will not play"
+            Nothing -> putStrLn "Error in parse - will not play"
             Just node ->
                 do
+                    putStrLn "Playing story!"
                     played <- Player.play node
                     print played
 
-main = parseAndPlay "example_data/cpsc-312-acyclic.json"
+main = 
+    do
+        putStrLn "-------------% STORYBOARD PLAYER %-------------"
+        putStrLn "Enter the name of a file to play:"
+        file <- getLine
+        putStrLn ("Loading '" ++ file ++ "'")
+        parseAndPlay file
